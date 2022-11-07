@@ -1,5 +1,13 @@
-exports.handler = (event, context) => {
-    console.log('Cron is running in ROOT dir!!!', event)
-    //do something
-    return { statusCode: 200 }
-  }
+// YOUR_BASE_DIRECTORY/netlify/functions/test-scheduled-function.js
+
+const { schedule } = require('@netlify/functions');
+
+const handler = async function(event, context) {
+    console.log("Received event on Root dir:", event);
+
+    return {
+        statusCode: 200,
+    };
+};
+
+exports.handler = schedule("* * * * *", handler);
